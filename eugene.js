@@ -57,15 +57,11 @@ function cascadingTableDelete() {
 
 function checkUser(user) {
     //check username against database
-    return db.get(user, function(err, doc) {
-    if (err) { 
-        console.log('1');
-        return true; 
-    }
-    else {
-        return false;
-    };
-    });
+    return db.get(user).then(function (result) {
+            return true;
+        }).catch(function (err) {
+            return false;
+        });
 }
 
 function addFakeUsers() {
